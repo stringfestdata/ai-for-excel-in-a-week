@@ -1,5 +1,5 @@
 let
-    Source = Excel.CurrentWorkbook(){[Name="Table1"]}[Content],
+    Source = Excel.CurrentWorkbook(){[Name="quarterly_claims"]}[Content],
     #"Changed Type" = Table.TransformColumnTypes(Source,{{"Policy_ID", type text}, {"Customer_Name", type text}, {"Claim_Q1", Int64.Type}, {"Claim_Q2", Int64.Type}, {"Claim_Q3", Int64.Type}, {"Claim_Q4", Int64.Type}, {"Agent_Info", type text}}),
     #"Filled Down" = Table.FillDown(#"Changed Type",{"Customer_Name"}),
     #"Reordered Columns" = Table.ReorderColumns(#"Filled Down",{"Policy_ID", "Customer_Name", "Agent_Info", "Claim_Q1", "Claim_Q2", "Claim_Q3", "Claim_Q4"}),
